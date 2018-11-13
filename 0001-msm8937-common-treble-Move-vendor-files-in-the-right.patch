@@ -1,0 +1,27 @@
+From 9fda33905d00ae9b12376f49690ba5a40834b446 Mon Sep 17 00:00:00 2001
+From: Louis Popi <theh2o64@gmail.com>
+Date: Tue, 30 Oct 2018 07:53:20 +0100
+Subject: [PATCH 1/2] msm8937-common: treble: Move vendor files in the right
+ place
+
+---
+ BoardConfigCommon.mk | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/BoardConfigCommon.mk b/BoardConfigCommon.mk
+index 268e556..40fe948 100644
+--- a/BoardConfigCommon.mk
++++ b/BoardConfigCommon.mk
+@@ -144,8 +144,7 @@ MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
+ TARGET_HW_DISK_ENCRYPTION := true
+ 
+ # Treble
+-# PRODUCT_FULL_TREBLE_OVERRIDE := true
+-PRODUCT_VENDOR_MOVE_ENABLED := true
++TARGET_COPY_OUT_VENDOR := system/vendor
+ 
+ # Filesystem
+ TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
+-- 
+2.17.1
+
