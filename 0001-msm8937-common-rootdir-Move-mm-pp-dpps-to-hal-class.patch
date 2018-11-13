@@ -1,0 +1,49 @@
+From 4ebdb72234b00cb78429d9b099ef92f42d65fa99 Mon Sep 17 00:00:00 2001
+From: Ethan Chen <intervigil@gmail.com>
+Date: Thu, 14 Jun 2018 22:26:26 -0700
+Subject: [PATCH] msm8937-common: rootdir: Move mm-pp-dpps to hal class
+
+Change-Id: Ib0f44f3631f676f7314ba3b621292b683e9e9171
+---
+ rootdir/etc/init.target.rc | 20 +-------------------
+ 1 file changed, 1 insertion(+), 19 deletions(-)
+
+diff --git a/rootdir/etc/init.target.rc b/rootdir/etc/init.target.rc
+index 51694cd..aaf5582 100644
+--- a/rootdir/etc/init.target.rc
++++ b/rootdir/etc/init.target.rc
+@@ -158,30 +158,12 @@ on property:vendor.ims.DATA_DAEMON_STATUS=1
+     start vendor.imsrcsservice
+ 
+ service ppd /system/vendor/bin/mm-pp-dpps
+-    class late_start
++    class hal
+     disabled
+     user system
+     socket pps stream 0660 system system
+     group system graphics
+ 
+-on property:init.svc.surfaceflinger=stopped
+-    stop ppd
+-
+-on property:init.svc.surfaceflinger=running
+-    start ppd
+-
+-on property:init.svc.surfaceflinger=restarting
+-    stop ppd
+-
+-on property:init.svc.zygote=stopped
+-    stop ppd
+-
+-on property:init.svc.zygote=running
+-    start ppd
+-
+-on property:init.svc.zygote=restarting
+-    stop ppd
+-
+ on charger
+     wait /dev/block/bootdevice/by-name/system
+     mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+-- 
+2.17.1
+
